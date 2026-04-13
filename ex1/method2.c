@@ -42,5 +42,13 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
         insert(nums[i], i);
     }
     *returnSize = 0;
+
+    // 修复：即使没有找到答案，也要清理哈希表
+    struct hashTable *current, *tmp;
+    HASH_ITER(hh, hashtable, current, tmp) {
+        HASH_DEL(hashtable, current);
+        free(current);
+    }
+
     return NULL;
 }

@@ -3,7 +3,7 @@
 
 struct hashTable {
     int key;
-    int val;
+    // int val;
     UT_hash_handle hh;
 };
 
@@ -15,15 +15,16 @@ struct hashTable* find(int ikey) {
     return tmp;
 }
 
-void insert(int ikey, int ival) {
+void insert(int ikey) {
     struct hashTable* it = find(ikey);
     if(it == NULL) {
         struct hashTable* tmp = malloc(sizeof(struct hashTable));
-        tmp->key = ikey, tmp->val = ival;
+        tmp->key = ikey; 
+        // tmp->val = ival;
         HASH_ADD_INT(hashtable, key, tmp);
     }
     else {
-        it->val = ival;
+        // it->val = ival;
     }
 }
 
@@ -50,7 +51,7 @@ bool isHappy(int n) {
 
         struct hashTable* it = find(val);
         if (it == NULL) {
-            insert(key, val);
+            insert(key);
             key = val;
         }
         else return false;

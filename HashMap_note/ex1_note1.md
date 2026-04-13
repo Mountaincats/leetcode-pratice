@@ -100,7 +100,7 @@ HASH_FIND_INT(head, keyptr, item);    // 查找整数键
 
 ### 2. 字符串键
 ```c
-HASH_ADD_KEYPTR(hh, head, keyptr, keylen, item);  // 添加字符串键
+HASH_ADD_KEYSTR(hh, head, keyptr, keylen, item);  // 添加字符串键
 HASH_FIND_STR(head, keyptr, item);               // 查找字符串键
 ```
 
