@@ -5,8 +5,9 @@
  */
 
 static bool valid(int* queen, int* col_use, int row, int col) {
+    if(col_use[col]) return false;
     for(int i = 0; i < row; i++) {
-        if(i + queen[i] == row + col || i - queen[i] == row - col || col_use[col]) return false;
+        if(i + queen[i] == row + col || i - queen[i] == row - col) return false;
     }
     return true;
 }
