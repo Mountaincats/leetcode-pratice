@@ -25,14 +25,14 @@ void solve(int n, int depth, int* returnSize, char*** solutions, int* queen, int
         return;
     }
     for(int i = 0; i < n; i++) {
-        queen[depth] = i;
         if(!valid(diagonals1, diagonals2, col_use, depth, i, n)) {
             continue;
         }
+        queen[depth] = i;
         col_use[i] = 1;
         diagonals1[depth - i + n - 1] = 1;
         diagonals2[depth + i] = 1;
-        
+
         solve(n, depth+1, returnSize, solutions, queen, col_use, diagonals1, diagonals2);
         col_use[i] = 0;
         diagonals1[depth - i + n - 1] = 0;
@@ -48,9 +48,9 @@ char*** solveNQueens(int n, int* returnSize, int** returnColumnSizes) {
     int col_use[n];
     int diagonals1[2 * n - 1];
     int diagonals2[2 * n - 1];
-    memset(col_use, 0, sizeof(int) * n);
-    memset(diagonals1, 0, sizeof(int) * (2 * n - 1));
-    memset(diagonals2, 0, sizeof(int) * (2 * n - 1));
+    memset(col_use, 0, sizeof(col_use));
+    memset(diagonals1, 0, sizeof(diagonals1));
+    memset(diagonals2, 0, sizeof(diagonals2));
     solve(n, 0, returnSize, solutions, queen, col_use, diagonals1, diagonals2);
 
     int* returnColumn = malloc(*returnSize * sizeof(int));
