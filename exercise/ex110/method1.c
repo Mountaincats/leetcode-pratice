@@ -13,7 +13,7 @@ int height(struct TreeNode* root) {
     int left = height(root->left);
     if (left < 0) return -1;
     int right = height(root->right);
-    if (right < 0 || fabs(left - right) > 1) return -1;
+    if (right < 0 || abs(left - right) > 1) return -1;
     else return fmax(left, right) + 1;
 }
 
