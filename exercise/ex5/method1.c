@@ -1,6 +1,12 @@
 char* longestPalindrome(char* s) {
     int n = strlen(s);
-    if(n < 2) return s;
+    if (n < 2) {
+				char* result = malloc(2 * sizeof(char));
+				result[0] = s[0];
+				result[1] = '\0';
+
+				return result;
+		}
 
     int maxlen = 1;
     int begin = 0;
