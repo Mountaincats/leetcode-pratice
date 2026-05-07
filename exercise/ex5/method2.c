@@ -17,39 +17,39 @@ char* longestPalindrome(char* s) {
     int begin = 0;
     
     for (int i = 0; i < n; i++) {
+				// 奇回文中心
         int left = i - 1;
         int right = i + 1;
-        int tmp = 1;
+        int tmp_len = 1;
         while (left >= 0 && right < n) {
             if (s[left] == s[right]) {
-                tmp += 2;
+                tmp_len += 2;
                 left--;
                 right++;
             }
             else break;
         }
-        if (tmp > maxlen) {
-            maxlen = tmp;
+        if (tmp_len > maxlen) {
+            maxlen = tmp_len;
             begin = left + 1;
         }
 
-        if (i < n - 1 && s[i] == s[i + 1]) {
-            left = i - 1;
-            right = i + 2;
-            tmp = 2;
-            while (left >= 0 && right < n) {
-                if (s[left] == s[right]) {
-                    tmp += 2;
-                    left--;
-                    right++;
-                }
-                else break;
-            }
-            if (tmp > maxlen) {
-                maxlen = tmp;
-                begin = left + 1;
-            }
-        }
+				// 偶回文中心
+				left = i;
+				right = i + 1;
+				tmp_len = 0;
+				while (left >= 0 && right < n) {
+						if (s[left] == s[right]) {
+								tmp_len += 2;
+								left--;
+								right++;
+						}
+						else break;
+				}
+				if (tmp_len > maxlen) {
+						maxlen = tmp_len;
+						begin = left + 1;
+				}
     }
 
     char* result = (char*)malloc((maxlen + 1) * sizeof(char));
