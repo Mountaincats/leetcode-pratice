@@ -9,7 +9,6 @@ int expand(const char* s, int left, int right, int n) {
 char* longestPalindrome(char* s) {
     int len = strlen(s);
     
-    // 如果输入为空字符串，返回空字符串
     if (len == 0) {
         char* result = (char*)malloc(1);
         result[0] = '\0';
@@ -17,17 +16,20 @@ char* longestPalindrome(char* s) {
     }
     
     // 构造新字符串，插入分隔符 '#'
-    int t_len = 2 * len + 3;
+    int t_len = 2 * len + 1;
     char* t = (char*)malloc(t_len + 1);
     t[0] = '#';
-    for (int i = 0; i < len; ++i) {
-        t[2 * i + 1] = s[i];
-        t[2 * i + 2] = '#';
+    for (int i = 0, j = 1; i < len; ++i, j += 2) {
+        t[j] = s[i];
+        t[j + 1] = '#';
     }
-    t[t_len - 1] = '\0';
+    t[t_len] = '\0';
     
+		// 现有臂长
     int* arm_len = (int*)malloc(t_len * sizeof(int));
+		// right 为现有臂长覆盖的最远距离， j 为其对应的回文中心
     int right = -1, j = -1;
+		// 最长回文子串的边界
     int start = 0, end = -1;
     
     for (int i = 0; i < t_len - 1; ++i) {
@@ -54,23 +56,15 @@ char* longestPalindrome(char* s) {
     }
     
     // 构造结果字符串
-    int result_len = 0;
-    for (int i = start; i <= end; ++i) {
-        if (t[i] != '#') {
-            ++result_len;
-        }
-    }
+    int result_len = (end - start) / 2;
     
     char* result = (char*)malloc(result_len + 1);
     int idx = 0;
-    for (int i = start; i <= end; ++i) {
-        if (t[i] != '#') {
-            result[idx++] = t[i];
-        }
+    for (int i = start + 1; i < end; i += 2) {
+				result[idx++] = t[i];
     }
     result[idx] = '\0';
     
-    // 释放内存
     free(t);
     free(arm_len);
     
