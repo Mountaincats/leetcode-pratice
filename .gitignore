@@ -1,7 +1,10 @@
 *
 !*/
+!*.h
 !*.c
 !*.cpp
 !*.py
 !.gitignore
 !*.md
+!Makefile
+!*.sh
