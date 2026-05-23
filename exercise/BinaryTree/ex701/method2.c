@@ -12,24 +12,16 @@ struct TreeNode* insertIntoBST(struct TreeNode* root, int val) {
     insert->left = NULL;
     insert->right = NULL;
 
-    if (root == NULL) return insert;
+    struct TreeNode** pos = &root;
 
-    struct TreeNode* pos = root;
-
-    while (pos != NULL) {
-        if (pos->val > val) {
-            if (pos->left == NULL) {
-                pos->left = insert;
-                break;
-            }
-            else pos = pos->left;
+    while (true) {
+        if (*pos == NULL) {
+            *pos = insert;
+            break;
         }
         else {
-            if (pos->right == NULL) {
-                pos->right = insert;
-                break;
-            }
-            else pos = pos->right;
+            if ((*pos)->val > val) pos = &((*pos)->left);
+            else pos = &((*pos)->right);
         }
     }
 
