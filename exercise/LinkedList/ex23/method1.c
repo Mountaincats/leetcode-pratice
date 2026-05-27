@@ -7,7 +7,7 @@
  */
 
 struct ListNode* mergeLists(struct ListNode* l1, struct ListNode* l2) {
-    if (!l1 || !l2) return l1 ? l1 : l2;
+    // if (!l1 || !l2) return l1 ? l1 : l2;
 
     struct ListNode head, *tail;
     head.next = NULL;
