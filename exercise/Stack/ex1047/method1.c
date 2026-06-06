@@ -1,5 +1,5 @@
 char* removeDuplicates(char* s) {
-    char* stack = malloc(sizeof(char) * strlen(s));
+    char* stack = malloc(sizeof(char) * (strlen(s) + 1));
     int top = -1;
     while (*s != '\0') {
         if (top == -1) stack[++top] = *s;
