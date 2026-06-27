@@ -1,61 +1,66 @@
 ### 一、知识点
-下面的专题除个别以外都能在 leetcode 上找到对应的习题集，专题后面的题号对应了我相应专题的 leetcode 刷题顺序，可供参考。
+下面的专题除索引表、平衡树、B树外都能在 leetcode 上找到对应的习题集，我相应专题的 leetcode 刷题顺序可以参考[清单](List.md)。
 
 #### 1. 结构
-* **哈希表(HashTable)：**
-1, 13, 36, 242, 454
-* **数组(Array)：**
-* **链表(LinkedList)：**
-* **字符串(String)：**
+* **数组(Array)**
+* **链表(Linked List)**
+* **字符串(String)**
 * **栈**
-	* 栈(Stack)：
-	* 单调栈(MonotonicStack)：
+	* 栈(Stack)
+	* 单调栈(Monotonic Stack)
 * **队列**
-	* 队列(Queue)：
-	* 单调队列(MonotonicQueue)：
+	* 队列(Queue)
+	* 单调队列(Monotonic Queue)
 * **树**
-	* 树(Tree)：
-	* 二叉树(BinaryTree)：
-	226, 101, 104, 111, 222, 110, 257, 404, 513, 112, 106, 654, 617, 94, 236
-	* 二叉搜索树/二叉查找树/二叉排序树(BinarySearchTree, BST)：
-	700, 98, 530
+	* 树(Tree)
+	* 二叉树(Binary Tree)
+	* 二叉搜索树/二叉查找树/二叉排序树(Binary Search Tree, BST)
 	* 平衡二叉树
-    	* 平衡二叉树
-    	* 红黑树
-	* 树状数组/二叉索引树(FenwickTree)：
-	* 堆/优先队列(Heap)：
-	* 线段树(SegmentTree)：
-	* 字典树(Trie)：
-	* 并查集/集合(UnionFind)：
-	* B树家族(主要用于磁盘、数据库设计，而非内存算法)
-* **有序集合(SortedSet)：**
-* **图(Graph)：**
-997, 1971
+    	* 平衡二叉树(Balanced Tree)
+    	* 红黑树(Red-Black Tree)
+	* 树状数组/二叉索引树(Fenwick Tree / Binary Indexed Tree)
+	* 堆/优先队列(Heap)
+	* 线段树(Segment Tree)
+	* 字典树(Trie)
+	* 并查集/集合(Union Find)
+  * B树(B-Tree)
+* **哈希表**
+  * 哈希表(Hash Table)
+  * 哈希函数(Hash Funtion)
+* **索引表(Index Table)**
+* **有序集合(Sorted Set)**
+* **图(Graph)**
 
 #### 2. 算法
 * **组别一**
-  * 二分查找(BinarySearch)：
-  * 排序(Sort)：
+  * 二分查找(Binary Search)
+  * 排序
+    * 排序(Sort)
+    * 归并排序(Merge Sort)
+    * 计数排序(Counting Sort)
+    * 基数排序(Radix Sort)
+    * 桶排序(Bucket Sort)
+    * 拓扑排序(Topological Sort)
 * **组别二**
-  * 回溯(Backtracking)：
-	17, 22, 51
-  * 递归(Recursion)：
-  * 分治(DivideAndConquer)：
+  * 回溯(Backtracking)
+  * 递归(Recursion)
+  * 分治(Divide And Conquer)
 * **组别三**
-  * 双指针(TwoPointers)：
-	202
-  * 滑动窗口(SlidingWindow)：
-	3
+  * 双指针(Two Pointers)
+  * 滑动窗口(Sliding Window)
+  * 前缀和(Prefix Sum)
 * **组别四**
-  * 广度优先搜索(BreadthFirstSearch, BFS)：
-  * 深度优先搜索(DepthFirstSearch, DFS)：
+  * 广度优先搜索(Breadth First Search, BFS)
+  * 深度优先搜索(Depth First Search, DFS)
 * **组别五**
-  * 贪心(Greedy)：
-	455
-  * 动态规划(DynamicProgramming)：
-	5
+  * 贪心(Greedy)
+  * 动态规划(Dynamic Programming)
+* **组别六**
+	* 位运算(Bitwise Operation)
+	* 位掩码(Bitmask)
 
-#### 3. 难点专题:
+#### 3. 难点专题
+* 字符串
 * 图
 * 回溯
 * 递归
@@ -65,16 +70,22 @@
 
 ---
 
-### 二、leetcode做题顺序与策略
+### 二、leetcode使用
 #### 1. 做题顺序
 数据结构与算法显然分“结构”与“算法”两个部分，它们结合紧密的同时，又有依赖关系，一个算法往往是针对某种结构设计的，结构的选择影响了算法的选择。因此采取了**先刷结构专题后刷算法专题**的策略。
 
-> 结构 -> 组别一 -> 组别二 -> 组别三 -> 组别四 -> 组别五
+> 结构 -> 组别一 -> 组别二 -> 组别三 -> 组别四 -> 组别五 -> 组别六
 
 #### 2. 做题策略
-1. 没有什么基础的情况下可以**每个专题都先只做 1-3 道简单或中等题了解主要思想和内容**，“结构”内的专题可以多做几题，后面常用。若有一定基础可自行决定跳过部分专题或减少题量
-2. 每个专题都了解了后再按上面的顺序**从头刷每个专题，每个专题约 10-30 题**
-3. 对每个专题有一定刷题量后，可以**深入个别专题学习或专题混合练习**
+1. 没有什么基础知识的情况下可以**每个专题都先只做 1-3 道简单或中等题了解主要思想和内容**。“结构”内的专题可以多做几题，尤其是链表。若有一定基础可自行决定跳过部分专题、减少题量或加大难度。该阶段各专题的推荐入门题目见[清单](List.md)内加粗的题号
+2. 每个专题都了解了后再按上面的顺序**从头刷每个专题，每个专题约 10-30 题**，数量可根据专题难度和重要程度调整，主要目的是提高理解程度、编码熟练度和掌握基础模板
+3. 完成上面两个阶段，每个专题都有一定刷题量后，可以混合使用下面的方法：
+   * 深入个别专题学习
+   * 专题混合练习，了解不同数据结构和算法的使用场合
+   * 参加**leetcode周赛**，做限时训练
+
+#### 3. leetcode测评结果
+leetcode 判题系统给的执行时间和消耗内存都只有参考意义，不必强求击败 100%，只要确保代码实现了目标算法即可。
 
 ---
 
@@ -92,9 +103,8 @@
   * [状态页](https://status.oi-wiki.org): 用于监控 OI Wiki 站点的在线情况。如果遇到了无法访问的问题，可以打开状态页，寻找可以连接的镜像站
 
 #### 3. 数学社区
-* [Mathematics Stack Exchange​](math.stackexchange.com)
-* [MathOverflow​​](mathoverflow.net)
-* [Art of Problem Solving (AoPS)​​](artofproblemsolving.com)
+* [Mathematics Stack Exchange](https://math.stackexchange.com)
+* [MathOverflow](https://mathoverflow.net)
 
 #### 4. 题库
 * [leetcode](https://leetcode.cn/problemset/)
