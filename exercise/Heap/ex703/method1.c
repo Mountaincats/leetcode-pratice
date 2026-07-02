@@ -56,9 +56,10 @@ typedef struct {
 } KthLargest;
 
 int kthLargestAdd(KthLargest* obj, int val) {
-    push(obj->heap, val);
-    if (obj->heap->heapSize > obj->maxSize) {
+    if (obj->heap->heapSize != obj->maxSize) push(obj->heap, val);
+    else if (top(obj->heap) < val) {
         pop(obj->heap);
+        push(obj->heap, val);
     }
     return top(obj->heap);
 }
@@ -66,7 +67,7 @@ int kthLargestAdd(KthLargest* obj, int val) {
 KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
     KthLargest* ret = malloc(sizeof(KthLargest));
     ret->heap = malloc(sizeof(struct Heap));
-    init(ret->heap, k + 1, cmp);
+    init(ret->heap, k, cmp);
     ret->maxSize = k;
     for (int i = 0; i < numsSize; i++) {
         kthLargestAdd(ret, nums[i]);

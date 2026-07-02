@@ -117,8 +117,10 @@ void init(struct Heap* obj, int n, bool (*cmp)(int, int)) {
 void push(struct Heap* obj, int val) {
     int child = ++(obj->heapSize), parent = child >> 1;
     obj->heap[child] = val;
-    // 向上调整（sift-up）
-    while (parent) {
+    // 向上调整（sift-up），循环条件是当前节点仍有父节点
+    // child != 1 代表目前节点不是根节点，仍有父节点
+    // 如果索引是从 0 开始，则循环条件可改为 child != 0
+    while (child != 1) {
         if (obj->cmp(obj->heap[child], obj->heap[parent])) {
             swap(&(obj->heap[child]), &(obj->heap[parent]));
             child = parent;
@@ -136,10 +138,17 @@ void push(struct Heap* obj, int val) {
 - 直到没有子节点或堆性质恢复
 ```c
 void pop(struct Heap* obj) {
+    // if (isempty(obj)) return;
     // 堆顶用堆尾替换
     obj->heap[1] = obj->heap[(obj->heapSize)--];
     int parent = 1, child = parent << 1;
-    // 向下调整（sift-down）
+    // 向下调整（sift-down），循环条件是当前节点仍有子节点
+    /* 从 1 开始索引 */
+    // parent << 1 = child > heapSize
+    // 代表已没有左子节点，在完全二叉树中即没有子节点
+    /* 从 0 开始索引 */
+    // (parent << 1) + 1 = child > heapSize - 1
+    // 代表已没有左子节点，条件即为 child + 1 <= obj->heapSize
     while (child <= obj->heapSize) {
         // 选择两个子节点中优先级更高的
         if (child + 1 <= obj->heapSize && 
@@ -158,14 +167,7 @@ void pop(struct Heap* obj) {
 }
 ```
 
-#### (5) 取堆顶
-```c
-int top(struct Heap* obj) {
-    return obj->heap[1];
-}
-```
-
-#### (6) 建堆（Floyd算法）
+#### (5) 建堆（Floyd算法）
 - 先将无序数组拷贝到堆数组（索引从1开始）
 - 找到**最后一个非叶子节点**：`n / 2`（完全二叉树中，索引大于 `n/2` 的节点均为叶子节点）
 - 从该节点开始向前遍历，对每个节点执行 `sift-down` 操作
@@ -204,7 +206,23 @@ void buildHeap(struct Heap* obj, int* arr, int n) {
 }
 ```
 
-#### (7) 使用示例
+#### (6) 取堆顶
+```c
+int top(struct Heap* obj) {
+    return obj->heap[1];
+}
+```
+
+#### (7) 判断堆是否为空
+- 堆在 `pop` 前需要判断是否为空，否则会出错。
+- 标准实现（以及工业级代码）通常不在 `pop` 内部判断堆空，而是采用“快速失败（Fail Fast）”策略，要求调用者先调用 `empty()` 检查。
+```c
+bool isempty(struct Heap* obj) {
+    return obj->heapSize == 0;
+}
+```
+
+#### (8) 使用示例
 ```c
 // 创建小顶堆
 struct Heap h;
