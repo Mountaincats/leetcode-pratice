@@ -1,0 +1,21 @@
+int lastStoneWeightII(int* stones, int stonesSize) {
+    int sum = 0;
+    for (int i = 0; i < stonesSize; i++) {
+        sum += stones[i];
+    }
+
+    int m = sum / 2;
+    bool dp[m + 1];
+    memset(dp, 0, sizeof(dp));
+    dp[0] = true;
+    for (int i = 0; i < stonesSize; i++) {
+        for (int j = m; j >= stones[i]; j--) {
+            dp[j] = dp[j] || dp[j - stones[i]];
+        }
+    }
+    for (int j = m;; j--) {
+        if (dp[j]) {
+            return sum - 2 * j;
+        }
+    }
+}
