@@ -45,6 +45,9 @@ int** permuteUnique(int* nums, int numsSize, int* returnSize, int** returnColumn
 
     dfs(0);
 
+    free(state);
+    free(select);
+
     *returnColumnSizes = colans;
     return ans;
 }
