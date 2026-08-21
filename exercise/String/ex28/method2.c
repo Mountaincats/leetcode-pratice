@@ -15,7 +15,10 @@ int strStr(char* haystack, char* needle) {
     for (int i = 0, j = 0; i < n; i++) {
         while (j > 0 && haystack[i] != needle[j]) j = next[j - 1];
         if (haystack[i] == needle[j]) {
-            if (j == m - 1) return i - m + 1;
+            if (j == m - 1) {
+                free(next);
+                return i - m + 1;
+            }
             j++;
         }
     }
