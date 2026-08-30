@@ -28,6 +28,15 @@ void insert(int ikey) {
     }
 }
 
+void clearHashTable(void) {
+    struct hashTable* current;
+    struct hashTable* temporary;
+    HASH_ITER(hh, hashtable, current, temporary) {
+        HASH_DEL(hashtable, current);
+        free(current);
+    }
+}
+
 // next() 是纯函数，更容易被内联和优化
 int next(int n) {
     int val = 0;
@@ -42,20 +51,30 @@ int next(int n) {
 
 bool isHappy(int n) {
     hashtable = NULL;
+    bool result;
 
     int key = n;
     while (true) {
         int val = next(key);
 
-        if (val == 1) return true; 
+        if (val == 1) {
+            result = true;
+            break;
+        }
 
         struct hashTable* it = find(val);
         if (it == NULL) {
             insert(key);
             key = val;
         }
-        else return false;
+        else {
+            result = false;
+            break;
+        }
     }
+
+    clearHashTable();
+    return result;
 }
 
 // bool isHappy(int n) {

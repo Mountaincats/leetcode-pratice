@@ -1,0 +1,3 @@
+nums=[-3,4,3,90]
+target=0
+expected=[0,2]

@@ -29,6 +29,15 @@ void insert(int ikey, int ival) {
     }
 }
 
+void clearHashTable(void) {
+    struct hashTable *current;
+    struct hashTable *temporary;
+    HASH_ITER(hh, hashtable, current, temporary) {
+        HASH_DEL(hashtable, current);
+        free(current);
+    }
+}
+
 int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
     hashtable = NULL;
     for(int i = 0; i < numsSize; i++){
@@ -37,18 +46,14 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
             int* ret = malloc(sizeof(int) * 2);
             ret[0] = it->val, ret[1] = i;
             *returnSize = 2;
+            clearHashTable();
             return ret;
         }
         insert(nums[i], i);
     }
     *returnSize = 0;
 
-    // 修复：即使没有找到答案，也要清理哈希表
-    struct hashTable *current, *tmp;
-    HASH_ITER(hh, hashtable, current, tmp) {
-        HASH_DEL(hashtable, current);
-        free(current);
-    }
+    clearHashTable();
 
     return NULL;
 }

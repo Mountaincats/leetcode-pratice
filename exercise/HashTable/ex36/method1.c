@@ -8,6 +8,7 @@ bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
         for (int j = 0; j < *boardColSize; j++) {
             if (board[i][j] == '.') continue;
             else if (numset[board[i][j] - '0' - 1] == 1) {
+                free(numset);
                 return false;
             }
             else {
@@ -24,6 +25,7 @@ bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
         for (int j = 0; j < *boardColSize; j++) {
             if (board[j][i] == '.') continue;
             else if (numset[board[j][i] - '0' - 1] == 1) {
+                free(numset);
                 return false;
             }
             else {
@@ -43,6 +45,7 @@ bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
 
                     if (board[r + 3 * i][c + 3 * j] == '.') continue;
                     else if (numset[board[r + 3 * i][c + 3 * j] - '0' - 1] == 1) {
+                        free(numset);
                         return false;
                     }
                     else {
