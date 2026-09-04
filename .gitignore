@@ -6,6 +6,5 @@
 !*.py
 !*.case
 !.gitignore
-!.gitmodules
 !*.md
 !Makefile
